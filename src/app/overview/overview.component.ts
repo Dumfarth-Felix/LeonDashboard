@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {BackEndService} from '../back-end.service';
 import {Observable} from 'rxjs';
 import {count} from 'rxjs/operators';
@@ -17,11 +17,13 @@ export class OverviewComponent implements OnInit {
   avg: string;
   count: number;
   sum: number;
+
   constructor(private backEndService: BackEndService, private readonly router: Router) {
-    if (!backEndService.signedIn){
+    if (!backEndService.signedIn) {
       router.navigate(['signIn']);
     }
   }
+
   ngOnInit(): void {
     this.getConversations();
   }

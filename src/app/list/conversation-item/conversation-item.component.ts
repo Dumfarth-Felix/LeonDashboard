@@ -17,11 +17,14 @@ export class ConversationItemComponent implements OnInit {
   months = ['Jan', 'Feb', 'Mar',
     'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep',
     'Oct', 'Nov', 'Dez'];
-  constructor(private backEndService: BackEndService) { }
+
+  constructor(private backEndService: BackEndService) {
+  }
 
   ngOnInit(): void {
     this.getConversation();
   }
+
   getConversation(): void {
     this.backEndService.getConversations(this.id).subscribe({
       next: res => {
