@@ -1,0 +1,20 @@
+ <mat-card>
+    <mat-card-title>{{id}}</mat-card-title>
+    <mat-card-content *ngIf="nOfMess !== null">
+      <p>{{date.getDate()}}. {{months[date.getMonth()]}}. {{date.getFullYear()}}  {{date.getHours()}}:{{date.getMinutes()}} und <b>{{nOfMess}}</b> Nachrichten vom User</p>
+      <button (click)="showHideChat()" mat-icon-button color="primary" aria-label="Button">
+        <mat-icon>question_answer</mat-icon>
+      </button>
+      <div *ngIf="showChat">
+      <div *ngFor="let message of messages" [ngClass]="{'mine':message.from == 'user','others':message.from == 'bot'}"
+           class="mine messages">
+        <div class="message" [ngSwitch]="message.messageType" [ngClass]="{'tri-right':message.from == 'user','tri-left':message.from == 'bot'}">
+          <div *ngSwitchCase="'text'">{{message.text}}</div>
+        </div>
+      </div>
+      </div>
+    </mat-card-content>
+   <mat-card-content *ngIf="nOfMess == null">
+     Einen Moment geduld bitte ...
+   </mat-card-content>
+  </mat-card>
