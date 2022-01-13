@@ -5,7 +5,7 @@ import {LogInComponent} from './log-in/log-in.component';
 
 const routes: Routes = [
   { path: 'dashboard', component: OverviewComponent },
-  {path: '**', component: LogInComponent}
+  {path: '', component: LogInComponent}
 ];
 
 @NgModule({
