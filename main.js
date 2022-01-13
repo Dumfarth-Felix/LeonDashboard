@@ -728,7 +728,7 @@ __webpack_require__.r(__webpack_exports__);
 
 const routes = [
     { path: 'dashboard', component: _overview_overview_component__WEBPACK_IMPORTED_MODULE_1__["OverviewComponent"] },
-    { path: '**', component: _log_in_log_in_component__WEBPACK_IMPORTED_MODULE_2__["LogInComponent"] }
+    { path: '', component: _log_in_log_in_component__WEBPACK_IMPORTED_MODULE_2__["LogInComponent"] }
 ];
 class AppRoutingModule {
 }
