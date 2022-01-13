@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build  --prod --base-href /Leobot/ --deploy-url /Leobot/",
+    "build": "ng build  --prod --base-href /LeonDashboard/ --deploy-url /LeonDashboard/",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
