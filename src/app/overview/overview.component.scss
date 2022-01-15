@@ -1,4 +1,23 @@
 mat-card {
   width: 30%;
-  margin: 1%;
+}
+.dashboard{
+  padding: 2% 0 0 2%;
+}
+app-list{
+  flex: 70%;
+  padding: 2%;
+}
+app-feedback-list{
+  flex: 30%;
+  padding: 2%;
+}
+.row {
+  width: 100%;
+  display: flex;
+}
+
+/* Create two equal columns that sits next to each other */
+.column {
+  padding: 10px;
 }

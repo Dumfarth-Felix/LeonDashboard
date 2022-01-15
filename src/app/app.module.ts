@@ -18,6 +18,8 @@ import {MatNativeDateModule} from '@angular/material/core';
 import {MatInputModule} from '@angular/material/input';
 import { LogInComponent } from './log-in/log-in.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import { FeedbackListComponent } from './feedback-list/feedback-list.component';
+import { FeedbackComponent } from './feedback-list/feedback/feedback.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import {ReactiveFormsModule} from '@angular/forms';
     OverviewComponent,
     ListComponent,
     ConversationItemComponent,
-    LogInComponent
+    LogInComponent,
+    FeedbackListComponent,
+    FeedbackComponent
   ],
   imports: [
     BrowserModule,

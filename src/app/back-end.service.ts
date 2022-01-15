@@ -23,9 +23,12 @@ export class BackEndService {
         Authorization: ' Basic ' + btoa( this.username + ':' + this.password)
       })
     };
-    return this.http.get<JSON>(`${BASE_URL}/conversations`,httpOptions);
+    return this.http.get<JSON>(`${BASE_URL}/conversations`, httpOptions);
   }
 
+  public getFeedbacks(): Observable<Feedback[]>{
+    return this.http.get<Feedback[]>(`${BASE_URL}/feedback`);
+  }
   public getConversations(id): Observable<JSON> {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -33,7 +36,7 @@ export class BackEndService {
         Authorization: ' Basic ' + btoa( this.username + ':' + this.password)
       })
     };
-    return this.http.get<JSON>(`${BASE_URL}/conversations` + '/' + id,httpOptions);
+    return this.http.get<JSON>(`${BASE_URL}/conversations` + '/' + id, httpOptions);
   }
   public signIn(username, password): Observable<string>{
     const httpOptions = {
@@ -70,4 +73,9 @@ export class BackEndService {
     localStorage.setItem('password', value);
     this._password = value;
   }
+}
+export interface Feedback{
+  name: string;
+  rating: number;
+  text: string;
 }
