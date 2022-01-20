@@ -1,7 +1,7 @@
  <mat-card>
     <mat-card-title>{{id}}</mat-card-title>
     <mat-card-content *ngIf="nOfMess !== null">
-      <p>{{date.getDate()}}. {{months[date.getMonth()]}}. {{date.getFullYear()}}  {{date.getHours()}}:{{date.getMinutes()}} und <b>{{nOfMess}}</b> Nachrichten vom User</p>
+      <p>{{date.getDate()}}. {{months[date.getMonth()]}}. {{date.getFullYear()}}  {{date.getHours()}}:{{(date.getMinutes() < 10) ? ("0" + date.getMinutes()) : date.getMinutes()}} und <b>{{nOfMess}}</b> Nachrichten vom User</p>
       <button (click)="showHideChat()" mat-icon-button color="primary" aria-label="Button">
         <mat-icon>question_answer</mat-icon>
       </button>
