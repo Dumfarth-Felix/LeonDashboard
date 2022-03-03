@@ -68,6 +68,16 @@ export class MonacoEditorComponent implements OnInit {
               kind: monaco.languages.CompletionItemKind.Text,
               insertText: 'version: "2.0"\n' +
                 'stories:\n'
+            },
+            {
+              label: 'i',
+              kind: monaco.languages.CompletionItemKind.Text,
+              insertText: '- intent: '
+            },
+            {
+              label: 'a',
+              kind: monaco.languages.CompletionItemKind.Text,
+              insertText: '- action: '
             }
           ];
           return {suggestions};
