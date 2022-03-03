@@ -1,0 +1,20 @@
+<div class="dashboard">
+  <mat-card>
+    <mat-card-title>
+      Overview
+    </mat-card-title>
+    <mat-card-content>
+      <p>
+        {{avg}} Nachrichten schreiben die Leute im Durchschnitt und insgesamt wurden in {{count}} Unterhaltungen
+        bereits {{sum}} Nachrichten geschrieben
+      </p>
+      <p class="gh">
+        Falls es irgendwelche Probleme geben sollte kannst du gerne einen Issue auf <a href="https://github.com/htl-leonding-project/2021-da-chatbot/issues">Github</a> hinzufügen
+      </p>
+    </mat-card-content>
+  </mat-card>
+</div>
+<div class="row">
+  <app-list class="colum"></app-list>
+  <app-feedback-list class="colum"></app-feedback-list>
+</div>

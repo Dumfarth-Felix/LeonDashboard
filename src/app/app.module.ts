@@ -20,6 +20,9 @@ import { LogInComponent } from './log-in/log-in.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import { FeedbackListComponent } from './feedback-list/feedback-list.component';
 import { FeedbackComponent } from './feedback-list/feedback/feedback.component';
+import { DashboardComponent } from './overview/dashboard/dashboard.component';
+import {MatTabsModule} from '@angular/material/tabs';
+import { MonacoEditorComponent } from './monaco-editor/monaco-editor.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,9 @@ import { FeedbackComponent } from './feedback-list/feedback/feedback.component';
     ConversationItemComponent,
     LogInComponent,
     FeedbackListComponent,
-    FeedbackComponent
+    FeedbackComponent,
+    DashboardComponent,
+    MonacoEditorComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +49,8 @@ import { FeedbackComponent } from './feedback-list/feedback/feedback.component';
     MatDatepickerModule,
     MatNativeDateModule,
     MatInputModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatTabsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

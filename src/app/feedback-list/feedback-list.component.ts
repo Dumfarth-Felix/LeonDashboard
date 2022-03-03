@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {BackEndService, Feedback} from '../back-end.service';
+import {MonacoEditorService} from '../monaco-editor.service';
 
 @Component({
   selector: 'app-feedback-list',
@@ -9,7 +10,8 @@ import {BackEndService, Feedback} from '../back-end.service';
 export class FeedbackListComponent implements OnInit {
   feedbacks: Feedback[];
 
-  constructor(private backEndService: BackEndService) { }
+  constructor(private backEndService: BackEndService, private readonly monacoEditorService: MonacoEditorService) {
+  }
 
   ngOnInit(): void {
     this.backEndService.getFeedbacks().subscribe(

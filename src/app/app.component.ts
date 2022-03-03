@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {MonacoEditorService} from './monaco-editor.service';
 
 @Component({
   selector: 'app-root',

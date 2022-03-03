@@ -35,7 +35,7 @@ export class ConversationItemComponent implements OnInit {
             map.set(messageKey, this.message[messageKey]);
           }
         }
-        this.date = new Date(Number(map.get('latest_event_time')) * 1000);
+        this.date = new Date(Number(map.get('events')[0].timestamp) * 1000);
         // tslint:disable-next-line:forin
         for (const messagesKey in map.get('messages')) {
           const map2 = new Map();
