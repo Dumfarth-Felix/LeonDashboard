@@ -1,6 +1,8 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {MonacoEditorService} from '../monaco-editor.service';
 import {first} from 'rxjs/operators';
+import {BackEndService} from '../back-end.service';
+
 
 declare var monaco: any;
 
@@ -11,9 +13,13 @@ declare var monaco: any;
 })
 export class MonacoEditorComponent implements OnInit {
   public editor: any;
+  saved = true;
+  @Input() code: string;
+  @Input() file: string;
 
-  constructor(private readonly monacoEditorService: MonacoEditorService) {
+  constructor(private readonly monacoEditorService: MonacoEditorService, private readonly backend: BackEndService) {
   }
+
   @ViewChild('editorContainer', {static: true}) editorContainer: ElementRef | null = null;
 
   ngOnInit(): void {
@@ -26,63 +32,87 @@ export class MonacoEditorComponent implements OnInit {
     }
 
     // @ts-ignore
-    console.log(monaco.languages.getLanguages().find(({ id }) => id === 'yaml'));
-    monaco.languages.register({ id: 'rasa' });
+    // console.log(monaco.languages.getLanguages().find(({ id }) => id === 'yaml'));
+    if (!this.monacoEditorService.addedLang) {
+      monaco.languages.register({id: 'rasa'});
 
 // Register a completion item provider for the new language
-    monaco.languages.registerCompletionItemProvider('rasa', {
-      provideCompletionItems: () => {
-        const suggestions = [
-          {
-            label: 'intent',
-            kind: monaco.languages.CompletionItemKind.Snippet,
-            insertText: '- intent: ${1:name}\n' +
-              '  examples: |\n' +
-              '    - ',
-            insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet
-          },
-          {
-            label: 'nlu',
-            kind: monaco.languages.CompletionItemKind.Text,
-            insertText: 'version: "2.0"\n' +
-              'nlu:'
-          },
-          {
-            label: 'story',
-            kind: monaco.languages.CompletionItemKind.Snippet,
-            insertText: '  - story: ${1:name}\n' +
-              '    steps:\n' +
-              '      - intent: ${2}\n' +
-              '      - action: ',
-            insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet
-          },
-          {
-            label: 'stories',
-            kind: monaco.languages.CompletionItemKind.Text,
-            insertText: 'version: "2.0"\n' +
-              'stories:\n'
-          }
-        ];
-        return { suggestions };
-      }
-    });
+      monaco.languages.registerCompletionItemProvider('rasa', {
+        provideCompletionItems: () => {
+          const suggestions = [
+            {
+              label: 'intent',
+              kind: monaco.languages.CompletionItemKind.Snippet,
+              insertText: '- intent: ${1:name}\n' +
+                '  examples: |\n' +
+                '    - ',
+              insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet
+            },
+            {
+              label: 'nlu',
+              kind: monaco.languages.CompletionItemKind.Text,
+              insertText: 'version: "2.0"\n' +
+                'nlu:'
+            },
+            {
+              label: 'story',
+              kind: monaco.languages.CompletionItemKind.Snippet,
+              insertText: '  - story: ${1:name}\n' +
+                '    steps:\n' +
+                '      - intent: ${2}\n' +
+                '      - action: ',
+              insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet
+            },
+            {
+              label: 'stories',
+              kind: monaco.languages.CompletionItemKind.Text,
+              insertText: 'version: "2.0"\n' +
+                'stories:\n'
+            }
+          ];
+          return {suggestions};
+        }
+      });
+      this.monacoEditorService.addedLang = true;
+    }
 
     const wrapper = document.getElementById('root');
     this.editor = monaco.editor.create(
       this.editorContainer.nativeElement,
       {
-        value: 'version: "2.0"\n' +
-          'nlu:\n' +
-          '- intent: greet\n' +
-          '  examples: |\n' +
-          '    - Grüß Gott!\n' +
-          '    - Guten Tag!\n' +
-          '    - Guten Tag bot\n' +
-          '    - Guten Tag lieber bot\n' +
-          '    - Hallo.',
-        language:  'rasa',
+        value: this.code,
+        language: 'rasa',
         automaticLayout: true
       }
     );
+    this.editor.onDidChangeModelContent(i => {
+        console.log('change');
+        if (this.saved) {
+          this.changeSave();
+        }
+      }
+    );
+  }
+
+  changeSave(): void {
+    this.saved = !this.saved;
+  }
+
+  save(): void {
+    this.changeSave();
+    switch (this.file) {
+      case 'nlu':
+        this.backend.putNLU(this.editor.getValue());
+        break;
+      case 'stories':
+        this.backend.putStories(this.editor.getValue());
+        break;
+      case 'rules':
+        this.backend.putRules(this.editor.getValue());
+        break;
+      case 'domain':
+        this.backend.putDomain(this.editor.getValue());
+        break;
+    }
   }
 }

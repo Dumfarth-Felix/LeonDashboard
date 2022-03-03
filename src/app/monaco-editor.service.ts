@@ -1,15 +1,18 @@
-import { Injectable } from '@angular/core';
-import {Subject} from 'rxjs';
+import {Injectable} from '@angular/core';
+import {Observable, Subject} from 'rxjs';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MonacoEditorService {
   loaded = false;
+  addedLang = false;
+  codeNLU = '';
 
   public loadingFinished: Subject<void> = new Subject<void>();
 
-  constructor() {}
+  constructor(private readonly http: HttpClient) {}
 
   private finishLoading(): void {
     this.loaded = true;

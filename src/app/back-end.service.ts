@@ -16,6 +16,86 @@ export class BackEndService {
   constructor(private readonly http: HttpClient) {
 
   }
+  getNLU(): Observable<string>{
+    const httpOptions = {
+      headers: new HttpHeaders({
+        responseType: 'text',
+        Authorization: ' Basic ' + btoa( this.username + ':' + this.password)
+      })
+    };
+    const url = 'http://leobot.htl-leonding.ac.at:8080/api/file/nlu.yml';
+    return this.http.get(url, {responseType: 'text'});
+  }
+  putNLU(value: any): void {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'text/plain',
+        Authorization: ' Basic ' + btoa( this.username + ':' + this.password)
+      })
+    };
+    const url = 'http://leobot.htl-leonding.ac.at:8080/api/file/nlu.yml';
+    this.http.put(url, value, httpOptions).subscribe();
+  }
+  getStories(): Observable<string>{
+    const httpOptions = {
+      headers: new HttpHeaders({
+        responseType: 'text',
+        Authorization: ' Basic ' + btoa( this.username + ':' + this.password)
+      })
+    };
+    const url = 'http://leobot.htl-leonding.ac.at:8080/api/file/stories.yml';
+    return this.http.get(url, {responseType: 'text'});
+  }
+  putStories(value: any): void {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'text/plain',
+        Authorization: ' Basic ' + btoa( this.username + ':' + this.password)
+      })
+    };
+    const url = 'http://leobot.htl-leonding.ac.at:8080/api/file/stories.yml';
+    this.http.put(url, value, httpOptions).subscribe();
+  }
+  getRules(): Observable<string>{
+    const httpOptions = {
+      headers: new HttpHeaders({
+        responseType: 'text',
+        Authorization: ' Basic ' + btoa( this.username + ':' + this.password)
+      })
+    };
+    const url = 'http://leobot.htl-leonding.ac.at:8080/api/file/rules.yml';
+    return this.http.get(url, {responseType: 'text'});
+  }
+  putRules(value: any): void {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'text/plain',
+        Authorization: ' Basic ' + btoa( this.username + ':' + this.password)
+      })
+    };
+    const url = 'http://leobot.htl-leonding.ac.at:8080/api/file/rules.yml';
+    this.http.put(url, value, httpOptions).subscribe();
+  }
+  getDomain(): Observable<string>{
+    const httpOptions = {
+      headers: new HttpHeaders({
+        responseType: 'text',
+        Authorization: ' Basic ' + btoa( this.username + ':' + this.password)
+      })
+    };
+    const url = 'http://leobot.htl-leonding.ac.at:8080/api/file/domain.yml';
+    return this.http.get(url, {responseType: 'text'});
+  }
+  putDomain(value: any): void {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'text/plain',
+        Authorization: ' Basic ' + btoa( this.username + ':' + this.password)
+      })
+    };
+    const url = 'http://leobot.htl-leonding.ac.at:8080/api/file/domain.yml';
+    this.http.put(url, value, httpOptions).subscribe();
+  }
   public getAllConversations(): Observable<JSON> {
     const httpOptions = {
       headers: new HttpHeaders({

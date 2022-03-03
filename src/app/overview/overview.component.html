@@ -1,7 +1,7 @@
 <mat-tab-group>
-  <mat-tab label="Unterhaltungen"> <app-dashboard ></app-dashboard></mat-tab>
-  <mat-tab label="Intents"> <app-monaco-editor></app-monaco-editor>> </mat-tab>
-  <mat-tab label="Stories"> <app-monaco-editor></app-monaco-editor> </mat-tab>
-  <mat-tab label="Rules"> <app-monaco-editor></app-monaco-editor> </mat-tab>
-  <mat-tab label="Domain"> <app-monaco-editor></app-monaco-editor> </mat-tab>
+  <mat-tab label="Unterhaltungen"> <app-dashboard></app-dashboard></mat-tab>
+  <mat-tab label="Intents"> <app-monaco-editor file="nlu" [code]="codeNLU"></app-monaco-editor> </mat-tab>
+  <mat-tab label="Stories"> <app-monaco-editor file="stories" [code]="codeStories"></app-monaco-editor> </mat-tab>
+  <mat-tab label="Rules"> <app-monaco-editor file="rules" [code]="codeRules"></app-monaco-editor> </mat-tab>
+  <mat-tab label="Domain"> <app-monaco-editor file="domain" [code]="codeDomain"></app-monaco-editor> </mat-tab>
 </mat-tab-group>
