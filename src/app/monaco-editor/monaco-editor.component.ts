@@ -14,6 +14,7 @@ declare var monaco: any;
 export class MonacoEditorComponent implements OnInit {
   public editor: any;
   saved = true;
+  trained = false;
   @Input() code: string;
   @Input() file: string;
 
@@ -139,5 +140,10 @@ export class MonacoEditorComponent implements OnInit {
         this.backend.putDomain(this.editor.getValue());
         break;
     }
+  }
+
+  disableTrain() {
+    console.log('changed' + this.trained);
+    this.trained = !this.trained;
   }
 }
