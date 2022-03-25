@@ -64,7 +64,7 @@ export class MonacoEditorComponent implements OnInit {
               insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet
             },
             {
-              label: 'stories',
+              label: 'stories header',
               kind: monaco.languages.CompletionItemKind.Text,
               insertText: 'version: "2.0"\n' +
                 'stories:\n'
@@ -78,7 +78,22 @@ export class MonacoEditorComponent implements OnInit {
               label: 'a',
               kind: monaco.languages.CompletionItemKind.Text,
               insertText: '- action: '
-            }
+            },
+            {
+              label: 'rule',
+              kind: monaco.languages.CompletionItemKind.Snippet,
+              insertText: '  - rule: ${1:name}\n' +
+                '    steps:\n' +
+                '      - intent: ${2}\n' +
+                '      - action: ',
+              insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet
+            },
+            {
+              label: 'rules header',
+              kind: monaco.languages.CompletionItemKind.Text,
+              insertText: 'version: "2.0"\n' +
+                'rules:\n'
+            },
           ];
           return {suggestions};
         }

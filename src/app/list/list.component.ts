@@ -10,12 +10,13 @@ import {DateRange, ExtractDateTypeFromSelection, MatDatepickerInputEvent} from '
 export class ListComponent implements OnInit {
   list: JSON;
   out: string;
-  private startDate: Date;
-  private endDate: Date;
+  startDate: Date;
+  endDate: Date;
   messPerS: Array<number>;
   messID: Array<string>;
   messages: Array<JSON>;
   tempMessIds: Array<string>;
+  amountMsg = 0;
 
   constructor(private backEndService: BackEndService) { }
 
@@ -84,6 +85,7 @@ export class ListComponent implements OnInit {
       for (let i = 0; i < tempList.length; i++) {
         this.messID.push(tempList[i].split('|')[0]);
       }
+      this.amountMsg = this.messID.length;
     }
   }
 }
